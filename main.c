@@ -1,9 +1,11 @@
 #include <stdio.h>
+
 #include "conversor_velocidade/conversor_velocidade.h"
 #include "conversor_tempo/conversor_tempo.h"
 #include "conversor_potencia/conversor_potencia.h"
 #include "conversor_massa/conversor_massa.h"
 #include "conversor_area/conversor_area.h"
+#include "conversor_comprimento/conversor_comprimento.h"
 
 int main() {
     double valor;
@@ -16,8 +18,11 @@ int main() {
     int opcao;
     int escolha;
     double valorEntrada, valorSaida;
+    int unidadeDestino;
+    double resultado;
 
-    // compilação: -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c  -o main
+
+    // compilação: -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_comprimento main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_comprimento/conversor_comprimento.c -o main
   
     // conversor velocidade
 
@@ -141,6 +146,40 @@ int main() {
     {
         printf("Opção inválida.\n");
     }
+
+    // Inicio - conversor de comprimento
+    printf("\n-------------------------------------------------\n");
+    printf("Conversor de Unidades de Comprimento\n");
+    printf("\n-------------------------------------------------\n");
+
+    menuConversorComprimento();
+    printf("\nDigite o número correspondente à unidade de origem: ");
+    scanf("%d", &unidadeOrigem);
+
+    if (unidadeOrigem < 1 || unidadeOrigem > 4) {
+        printf("Unidade de origem inválida!\n");
+        return 1;
+    }
+
+    printf("\nDigite o valor a ser convertido: ");
+    scanf("%lf", &valor);
+
+    menuConversorComprimento();
+    printf("\nDigite o número correspondente à unidade de destino: ");
+    scanf("%d", &unidadeDestino);
+
+    if (unidadeDestino < 1 || unidadeDestino > 4) {
+        printf("Unidade de destino inválida!\n");
+        return 1;
+    }
+
+    // Conversão entre as unidades de comprimento
+    resultado = converterUnidadesComprimento(valor, unidadeOrigem, unidadeDestino);
+
+    printf("\n%.2lf na unidade %d equivale a %.2lf na unidade %d.\n", 
+        valor, unidadeOrigem, resultado, unidadeDestino);
+    
+    // Fim - conversor de comprimento
 
     return 0;
 }
