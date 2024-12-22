@@ -2,6 +2,7 @@
 #include "conversor_velocidade/conversor_velocidade.h"
 #include "conversor_tempo/conversor_tempo.h"
 #include "conversor_potencia/conversor_potencia.h"
+#include "conversor_massa/conversor_massa.h"
 
 int main() {
     double valor;
@@ -10,8 +11,10 @@ int main() {
     double mph = 62.14;
     int unidadeOrigem;
     double valor2;
+    float valor3;
+    int opcao;
 
-    // compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c -o main
+    // compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c -o main
   
     // conversor velocidade
 
@@ -75,6 +78,35 @@ int main() {
         printf("Watts (W): %.2lf\n", hp_para_watts(valor2));
         printf("Quilowatts (kW): %.2lf\n", hp_para_kw(valor2));
         printf("Cavalos-vapor (cv): %.2lf\n", hp_para_cv(valor2));
+    }
+
+    // conversor de massa
+    printf("Conversor de Unidades - Escolha a opcao:\n");
+    printf("1 - Gramas para Quilogramas\n");
+    printf("2 - Quilogramas para Gramas\n");
+    printf("3 - Quilogramas para Toneladas\n");
+    printf("4 - Toneladas para Quilogramas\n");
+    printf("Digite a opcao desejada: ");
+    scanf("%d", &opcao);
+
+    printf("Digite o valor a ser convertido: ");
+    scanf("%f", &valor3);
+
+    switch (opcao) {
+        case 1:
+            printf("%.2f g = %.2f kg\n", valor3, gramas_para_quilogramas(valor3));
+            break;
+        case 2:
+            printf("%.2f kg = %.2f g\n", valor3, quilogramas_para_gramas(valor3));
+            break;
+        case 3:
+            printf("%.2f kg = %.2f toneladas\n", valor3, quilogramas_para_toneladas(valor3));
+            break;
+        case 4:
+            printf("%.2f toneladas = %.2f kg\n", valor3, toneladas_para_quilogramas(valor3));
+            break;
+        default:
+            printf("Opcao invalida.\n");
     }
 
     return 0;
