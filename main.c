@@ -2,16 +2,17 @@
 #include "conversor_velocidade/conversor_velocidade.h"
 #include "conversor_tempo/conversor_tempo.h"
 #include "conversor_potencia/conversor_potencia.h"
+#include "conversor_memoria/conversor_memoria.h"
 
 int main() {
     double valor;
     double kmh = 100.0;
     double ms = 27.78;
     double mph = 62.14;
-    int unidadeOrigem;
-    double valor2;
+    int unidadeOrigem, unidadeOrigemMemoria;
+    double valor2, valorMemoria, resultadoValorMemoria;
 
-    // compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c -o main
+    // compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_memoria/conversor_memoria.c -o main
   
     // conversor velocidade
 
@@ -76,6 +77,13 @@ int main() {
         printf("Quilowatts (kW): %.2lf\n", hp_para_kw(valor2));
         printf("Cavalos-vapor (cv): %.2lf\n", hp_para_cv(valor2));
     }
+
+    // converter unidades de memoria
+    conversorMemoria();
+    
+    
+
+
 
     return 0;
 }
