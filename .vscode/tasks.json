@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Conversor",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "c:/Users/mathe/OneDrive/Documentos/GitHub/Conversor-Medidas/conversor-área/main.c",
+        "c:/Users/mathe/OneDrive/Documentos/GitHub/Conversor-Medidas/conversor-área/conversor_area.c",
+        "-o",
+        "c:/Users/mathe/OneDrive/Documentos/GitHub/Conversor-Medidas/conversor-área/output/conversor_area.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
