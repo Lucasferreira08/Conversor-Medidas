@@ -3,6 +3,7 @@
 #include "conversor_tempo/conversor_tempo.h"
 #include "conversor_potencia/conversor_potencia.h"
 #include "conversor_massa/conversor_massa.h"
+#include "conversor_area/conversor_area.h"
 
 int main() {
     double valor;
@@ -13,8 +14,10 @@ int main() {
     double valor2;
     float valor3;
     int opcao;
+    int escolha;
+    double valorEntrada, valorSaida;
 
-    // compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c -o main
+    // compilação: -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c  -o main
   
     // conversor velocidade
 
@@ -107,6 +110,36 @@ int main() {
             break;
         default:
             printf("Opcao invalida.\n");
+    }
+
+    // conversor area
+    printf("\n-------------------------------------------------\n");
+    printf("Conversor de área\n");
+    printf("-------------------------------------------------\n");
+    printf("Informe o número da escolha a opção desejada:\n");
+    printf("1- Metro quadrado para Centímetro quadrado;\n");
+    printf("2- Centímetro quadrado para Metro quadrado;\n");
+    printf("-------------------------------------------------\n");
+    printf(" > ");
+    scanf("%d", &escolha);
+
+    if (escolha == 1)
+    {
+        printf("Informe o valor em m²: ");
+        scanf("%lf", &valorEntrada);
+        valorSaida = m2_para_cm2(valorEntrada);
+        printf("Resultado: %lf cm²\n", valorSaida);
+    }
+    else if (escolha == 2)
+    {
+        printf("Informe o valor em cm²: ");
+        scanf("%lf", &valorEntrada);
+        valorSaida = cm2_para_m2(valorEntrada);
+        printf("Resultado: %lf m²\n", valorSaida);
+    }
+    else
+    {
+        printf("Opção inválida.\n");
     }
 
     return 0;
