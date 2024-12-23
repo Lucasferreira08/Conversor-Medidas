@@ -4,8 +4,13 @@
 #include "conversor_potencia/conversor_potencia.h"
 #include "conversor_massa/conversor_massa.h"
 #include "conversor_area/conversor_area.h"
+#include "conversor_memoria/conversor_memoria.h"
 
+
+// compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_memoria/conversor_memoria.c -o main
+ 
 // gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c  -o main
+
 
 void menu_velocidade() {
     double kmh = 100.0, ms = 27.78, mph = 62.14;
@@ -161,6 +166,9 @@ int main() {
             case 5:
                 menu_area();
                 break;
+            case 6:
+                conversorMemoria();
+                break;
             case 0:
                 printf("Encerrando o programa...\n");
                 break;
@@ -168,6 +176,6 @@ int main() {
                 printf("Opção inválida. Tente novamente.\n");
         }
     } while (opcao != 0);
-
+        
     return 0;
 }
