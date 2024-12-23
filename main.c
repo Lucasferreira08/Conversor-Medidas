@@ -6,11 +6,8 @@
 #include "conversor_area/conversor_area.h"
 #include "conversor_memoria/conversor_memoria.h"
 
-
-// compilação: gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_memoria/conversor_memoria.c -o main
  
-// gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c  -o main
-
+// gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_memoria  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_memoria/conversor_memoria.c -o main
 
 void menu_velocidade() {
     double kmh = 100.0, ms = 27.78, mph = 62.14;
@@ -146,6 +143,7 @@ int main() {
         printf("3 - Conversor de Potência\n");
         printf("4 - Conversor de Massa\n");
         printf("5 - Conversor de Área\n");
+        printf("6 - Conversor de Memória\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
