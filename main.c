@@ -1,13 +1,15 @@
 #include <stdio.h>
+
 #include "conversor_velocidade/conversor_velocidade.h"
 #include "conversor_tempo/conversor_tempo.h"
 #include "conversor_potencia/conversor_potencia.h"
 #include "conversor_massa/conversor_massa.h"
 #include "conversor_area/conversor_area.h"
 #include "conversor_memoria/conversor_memoria.h"
+#include "conversor_comprimento/conversor_comprimento.h"
 
  
-// gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_memoria  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_memoria/conversor_memoria.c -o main
+// gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_memoria -I./conversor_comprimento main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_memoria/conversor_memoria.c ./conversor_comprimento/conversor_comprimento.c -o main
 
 void menu_velocidade() {
     double kmh = 100.0, ms = 27.78, mph = 62.14;
@@ -134,6 +136,38 @@ void menu_area() {
     }
 }
 
+void menu_comprimento() {
+    int unidadeOrigemComprimento, unidadeDestinoComprimento;
+    double valorComprimento, resultadoComprimento;
+    
+    printf("\n\nConversor de Unidades de Comprimento\n\n");
+
+    menuConversorComprimento();
+    printf("Digite o número correspondente à unidade de origem: ");
+    scanf("%d", &unidadeOrigemComprimento);
+
+    if (unidadeOrigemComprimento < 1 || unidadeOrigemComprimento > 4) {
+        printf("Unidade de origem inválida!\n");
+    } else {
+        printf("Digite o valor a ser convertido: ");
+        scanf("%lf", &valorComprimento);
+
+        menuConversorComprimento();
+        printf("Digite o número correspondente à unidade de destino: ");
+        scanf("%d", &unidadeDestinoComprimento);
+
+        if (unidadeDestinoComprimento < 1 || unidadeDestinoComprimento > 4) {
+            printf("Unidade de destino inválida!\n");
+        } else {
+            // Conversão direta entre as unidades
+            resultadoComprimento = converterUnidadesComprimento(valorComprimento, unidadeOrigemComprimento, unidadeDestinoComprimento);
+
+            printf("\n%.2lf na unidade %d equivale a %.2lf na unidade %d.\n", 
+                valorComprimento, unidadeOrigemComprimento, resultadoComprimento, unidadeDestinoComprimento);
+        }
+    }
+}
+
 int main() {
     int opcao;
     do {
@@ -144,6 +178,7 @@ int main() {
         printf("4 - Conversor de Massa\n");
         printf("5 - Conversor de Área\n");
         printf("6 - Conversor de Memória\n");
+        printf("7 - Conversor de Comprimento\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
@@ -166,6 +201,9 @@ int main() {
                 break;
             case 6:
                 conversorMemoria();
+                break;
+            case 7:
+                menu_comprimento();
                 break;
             case 0:
                 printf("Encerrando o programa...\n");
