@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "conversor_comprimento.h": "c",
-        "conversor_massa.h": "c",
-        "conversor_potencia.h": "c",
-        "conversor_area.h": "c"
-    }
-}
