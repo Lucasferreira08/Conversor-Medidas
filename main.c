@@ -5,39 +5,25 @@
 #include "conversor_potencia/conversor_potencia.h"
 #include "conversor_massa/conversor_massa.h"
 #include "conversor_area/conversor_area.h"
-#include "conversor_comprimento/conversor_comprimento.h"
+#include "conversor_memoria/conversor_memoria.h"
 
-int main() {
-    double valor;
-    double kmh = 100.0;
-    double ms = 27.78;
-    double mph = 62.14;
-    int unidadeOrigem;
-    double valor2;
-    float valor3;
-    int opcao;
-    int escolha;
-    double valorEntrada, valorSaida;
-    int unidadeDestino;
-    double resultado;
+ 
+// gcc -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_memoria  main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_memoria/conversor_memoria.c -o main
 
-
-    // compilação: -I./conversor_tempo -I./conversor_velocidade -I./conversor_potencia -I./conversor_massa -I./conversor_area -I./conversor_comprimento main.c ./conversor_tempo/conversor_tempo.c ./conversor_velocidade/conversor_velocidade.c ./conversor_potencia/conversor_potencia.c ./conversor_massa/conversor_massa.c ./conversor_area/conversor_area.c ./conversor_comprimento/conversor_comprimento.c -o main
-  
-    // conversor velocidade
-
+void menu_velocidade() {
+    double kmh = 100.0, ms = 27.78, mph = 62.14;
+    printf("\nConversor de Velocidade:\n");
     printf("%.2f km/h -> %.2f m/s\n", kmh, kmh_para_ms(kmh));
     printf("%.2f km/h -> %.2f mph\n", kmh, kmh_para_mph(kmh));
     printf("%.2f m/s -> %.2f mph\n", ms, ms_para_mph(ms));
     printf("%.2f m/s -> %.2f km/h\n", ms, ms_para_kmh(ms));
     printf("%.2f mph -> %.2f m/s\n", mph, mph_para_ms(mph));
     printf("%.2f mph -> %.2f km/h\n", mph, mph_para_kmh(mph));
+}
 
-    printf("\nPressione Enter para sair...");
-    getchar();  // Aguarda o usuário pressionar Enter
-
-    // conversor tempo
-
+void menu_tempo() {
+    double valor;
+    printf("\nConversor de Tempo:\n");
     printf("Digite um valor em segundos: ");
     scanf("%lf", &valor);
     printf("%.2lf segundos = %.2lf minutos\n", valor, segundos_para_minutos(valor));
@@ -52,134 +38,143 @@ int main() {
     scanf("%lf", &valor);
     printf("%.2lf horas = %.2lf segundos\n", valor, horas_para_segundos(valor));
     printf("%.2lf horas = %.2lf minutos\n", valor, horas_para_minutos(valor));
+}
 
-    // conversor de potencia
-
-    printf("Conversor de Unidades de Potência\n");
+void menu_potencia() {
+    int unidadeOrigem;
+    double valor;
+    printf("\nConversor de Potência:\n");
     printf("Escolha a unidade de origem:\n");
-    printf("1. Watts (W)\n");
-    printf("2. Quilowatts (kW)\n");
-    printf("3. Cavalos-vapor (cv)\n");
-    printf("4. Horsepower (hp)\n");
+    printf("1. Watts (W)\n2. Quilowatts (kW)\n3. Cavalos-vapor (cv)\n4. Horsepower (hp)\n");
     printf("Escolha a unidade de origem (1-4): ");
     scanf("%d", &unidadeOrigem);
 
     printf("Digite o valor a ser convertido: ");
-    scanf("%lf", &valor2);
+    scanf("%lf", &valor);
 
     printf("\nResultado das conversões:\n");
-
-    // Converter para todas as unidades possíveis
-    if (unidadeOrigem == 1) { // Se a unidade de origem for Watts
-        printf("Quilowatts (kW): %.2lf\n", watts_para_kw(valor2));
-        printf("Cavalos-vapor (cv): %.2lf\n", watts_para_cv(valor2));
-        printf("Horsepower (hp): %.2lf\n", watts_para_hp(valor2));
-    } else if (unidadeOrigem == 2) { // Se a unidade de origem for Quilowatts
-        printf("Watts (W): %.2lf\n", kw_para_watts(valor2));
-        printf("Cavalos-vapor (cv): %.2lf\n", kw_para_cv(valor2));
-        printf("Horsepower (hp): %.2lf\n", kw_para_hp(valor2));
-    } else if (unidadeOrigem == 3) { // Se a unidade de origem for Cavalos-vapor
-        printf("Watts (W): %.2lf\n", cv_para_watts(valor2));
-        printf("Quilowatts (kW): %.2lf\n", cv_para_kw(valor2));
-        printf("Horsepower (hp): %.2lf\n", cv_para_hp(valor2));
-    } else if (unidadeOrigem == 4) { // Se a unidade de origem for Horsepower
-        printf("Watts (W): %.2lf\n", hp_para_watts(valor2));
-        printf("Quilowatts (kW): %.2lf\n", hp_para_kw(valor2));
-        printf("Cavalos-vapor (cv): %.2lf\n", hp_para_cv(valor2));
+    switch (unidadeOrigem) {
+        case 1:
+            printf("Quilowatts (kW): %.2lf\n", watts_para_kw(valor));
+            printf("Cavalos-vapor (cv): %.2lf\n", watts_para_cv(valor));
+            printf("Horsepower (hp): %.2lf\n", watts_para_hp(valor));
+            break;
+        case 2:
+            printf("Watts (W): %.2lf\n", kw_para_watts(valor));
+            printf("Cavalos-vapor (cv): %.2lf\n", kw_para_cv(valor));
+            printf("Horsepower (hp): %.2lf\n", kw_para_hp(valor));
+            break;
+        case 3:
+            printf("Watts (W): %.2lf\n", cv_para_watts(valor));
+            printf("Quilowatts (kW): %.2lf\n", cv_para_kw(valor));
+            printf("Horsepower (hp): %.2lf\n", cv_para_hp(valor));
+            break;
+        case 4:
+            printf("Watts (W): %.2lf\n", hp_para_watts(valor));
+            printf("Quilowatts (kW): %.2lf\n", hp_para_kw(valor));
+            printf("Cavalos-vapor (cv): %.2lf\n", hp_para_cv(valor));
+            break;
+        default:
+            printf("Opção inválida.\n");
     }
+}
 
-    // conversor de massa
-    printf("Conversor de Unidades - Escolha a opcao:\n");
+void menu_massa() {
+    int opcao;
+    float valor;
+    printf("\nConversor de Massa:\n");
     printf("1 - Gramas para Quilogramas\n");
     printf("2 - Quilogramas para Gramas\n");
     printf("3 - Quilogramas para Toneladas\n");
     printf("4 - Toneladas para Quilogramas\n");
-    printf("Digite a opcao desejada: ");
+    printf("Digite a opção desejada: ");
     scanf("%d", &opcao);
 
     printf("Digite o valor a ser convertido: ");
-    scanf("%f", &valor3);
+    scanf("%f", &valor);
 
     switch (opcao) {
         case 1:
-            printf("%.2f g = %.2f kg\n", valor3, gramas_para_quilogramas(valor3));
+            printf("%.2f g = %.2f kg\n", valor, gramas_para_quilogramas(valor));
             break;
         case 2:
-            printf("%.2f kg = %.2f g\n", valor3, quilogramas_para_gramas(valor3));
+            printf("%.2f kg = %.2f g\n", valor, quilogramas_para_gramas(valor));
             break;
         case 3:
-            printf("%.2f kg = %.2f toneladas\n", valor3, quilogramas_para_toneladas(valor3));
+            printf("%.2f kg = %.2f toneladas\n", valor, quilogramas_para_toneladas(valor));
             break;
         case 4:
-            printf("%.2f toneladas = %.2f kg\n", valor3, toneladas_para_quilogramas(valor3));
+            printf("%.2f toneladas = %.2f kg\n", valor, toneladas_para_quilogramas(valor));
             break;
         default:
-            printf("Opcao invalida.\n");
+            printf("Opção inválida.\n");
     }
+}
 
-    // conversor area
-    printf("\n-------------------------------------------------\n");
-    printf("Conversor de área\n");
-    printf("-------------------------------------------------\n");
-    printf("Informe o número da escolha a opção desejada:\n");
-    printf("1- Metro quadrado para Centímetro quadrado;\n");
-    printf("2- Centímetro quadrado para Metro quadrado;\n");
-    printf("-------------------------------------------------\n");
-    printf(" > ");
+void menu_area() {
+    int escolha;
+    double valorEntrada, valorSaida;
+    printf("\nConversor de Área:\n");
+    printf("1 - Metro quadrado para Centímetro quadrado\n");
+    printf("2 - Centímetro quadrado para Metro quadrado\n");
+    printf("Digite a opção desejada: ");
     scanf("%d", &escolha);
 
-    if (escolha == 1)
-    {
+    if (escolha == 1) {
         printf("Informe o valor em m²: ");
         scanf("%lf", &valorEntrada);
         valorSaida = m2_para_cm2(valorEntrada);
-        printf("Resultado: %lf cm²\n", valorSaida);
-    }
-    else if (escolha == 2)
-    {
+        printf("Resultado: %.2lf cm²\n", valorSaida);
+    } else if (escolha == 2) {
         printf("Informe o valor em cm²: ");
         scanf("%lf", &valorEntrada);
         valorSaida = cm2_para_m2(valorEntrada);
-        printf("Resultado: %lf m²\n", valorSaida);
-    }
-    else
-    {
+        printf("Resultado: %.2lf m²\n", valorSaida);
+    } else {
         printf("Opção inválida.\n");
     }
+}
 
-    // Inicio - conversor de comprimento
-    printf("\n-------------------------------------------------\n");
-    printf("Conversor de Unidades de Comprimento\n");
-    printf("\n-------------------------------------------------\n");
+int main() {
+    int opcao;
+    do {
+        printf("\nMenu Principal:\n");
+        printf("1 - Conversor de Velocidade\n");
+        printf("2 - Conversor de Tempo\n");
+        printf("3 - Conversor de Potência\n");
+        printf("4 - Conversor de Massa\n");
+        printf("5 - Conversor de Área\n");
+        printf("6 - Conversor de Memória\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
 
-    menuConversorComprimento();
-    printf("\nDigite o número correspondente à unidade de origem: ");
-    scanf("%d", &unidadeOrigem);
-
-    if (unidadeOrigem < 1 || unidadeOrigem > 4) {
-        printf("Unidade de origem inválida!\n");
-        return 1;
-    }
-
-    printf("\nDigite o valor a ser convertido: ");
-    scanf("%lf", &valor);
-
-    menuConversorComprimento();
-    printf("\nDigite o número correspondente à unidade de destino: ");
-    scanf("%d", &unidadeDestino);
-
-    if (unidadeDestino < 1 || unidadeDestino > 4) {
-        printf("Unidade de destino inválida!\n");
-        return 1;
-    }
-
-    // Conversão entre as unidades de comprimento
-    resultado = converterUnidadesComprimento(valor, unidadeOrigem, unidadeDestino);
-
-    printf("\n%.2lf na unidade %d equivale a %.2lf na unidade %d.\n", 
-        valor, unidadeOrigem, resultado, unidadeDestino);
-    
-    // Fim - conversor de comprimento
-
+        switch (opcao) {
+            case 1:
+                menu_velocidade();
+                break;
+            case 2:
+                menu_tempo();
+                break;
+            case 3:
+                menu_potencia();
+                break;
+            case 4:
+                menu_massa();
+                break;
+            case 5:
+                menu_area();
+                break;
+            case 6:
+                conversorMemoria();
+                break;
+            case 0:
+                printf("Encerrando o programa...\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 0);
+        
     return 0;
 }
